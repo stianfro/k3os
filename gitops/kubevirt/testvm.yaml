@@ -4,7 +4,7 @@ metadata:
   name: testvm
   namespace: vm
 spec:
-  running: true
+  running: false
   template:
     metadata:
       labels:
