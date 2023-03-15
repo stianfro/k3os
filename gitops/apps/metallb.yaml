@@ -12,7 +12,7 @@ spec:
     repoURL: https://github.com/stianfro/k3os.git
     targetRevision: HEAD
   ignoreDifferences:
-  - group: apiextensions
-    kind: CustomResourceDefinition
+  - group: "*"
+    kind: "*"
     jqPathExpressions:
     - '.spec.conversion.webhook.clientConfig.caBundle'
