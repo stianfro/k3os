@@ -4,9 +4,8 @@ metadata:
   name: fedora-1
   namespace: vm
 spec:
-  running: true
+  running: false
   template:
-    metadata:
     spec:
       domain:
         cpu:
