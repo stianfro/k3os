@@ -5,13 +5,11 @@ metadata:
   namespace: monitoring
 spec:
   entryPoints:
-    - websecure
+    - web
   routes:
     - kind: Rule
       match: Host(`alertmanager.froystein.jp`)
-      priority: 10
+      priority: 12
       services:
         - name: alertmanager-main
           port: 9093
-  tls:
-    certResolver: default

@@ -5,13 +5,11 @@ metadata:
   namespace: monitoring
 spec:
   entryPoints:
-    - websecure
+    - web
   routes:
     - kind: Rule
       match: Host(`prometheus.froystein.jp`)
-      priority: 10
+      priority: 13
       services:
         - name: prometheus-k8s
           port: 9090
-  tls:
-    certResolver: default
