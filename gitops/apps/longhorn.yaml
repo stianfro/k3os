@@ -5,6 +5,20 @@ metadata:
   namespace: argocd
 spec:
   destination:
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: gitops/longhorn
+    repoURL: https://github.com/stianfro/k3os.git
+    targetRevision: HEAD
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: longhorn-system
+  namespace: argocd
+spec:
+  destination:
     namespace: longhorn-system
     server: https://kubernetes.default.svc
   project: default
