@@ -1,0 +1,4 @@
+resources:
+  - ingressroute-alertmanager
+  - ingressroute-grafana
+  - ingressroute-prometheus

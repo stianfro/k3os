@@ -1,0 +1,17 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: alertmanager
+  namespace: monitoring
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`alertmanager.froystein.jp`)
+      priority: 10
+      services:
+        - name: alertmanager-main
+          port: 9093
+  tls:
+    certResolver: default

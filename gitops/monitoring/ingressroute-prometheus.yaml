@@ -1,0 +1,17 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: prometheus
+  namespace: monitoring
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`prometheus.froystein.jp`)
+      priority: 10
+      services:
+        - name: prometheus-k8s
+          port: 9090
+  tls:
+    certResolver: default

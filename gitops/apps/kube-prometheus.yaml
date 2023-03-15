@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kube-prometheus
+  namespace: argocd
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    directory:
+      exclude: setup
+      jsonnet: {}
+    path: manifests
+    repoURL: https://github.com/prometheus-operator/kube-prometheus
+    targetRevision: HEAD
