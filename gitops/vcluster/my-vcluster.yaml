@@ -13,9 +13,9 @@ spec:
     repoURL: https://charts.loft.sh
     targetRevision: 0.14.2
     helm:
-    parameters:
-      - name: service.type
-        value: LoadBalancer
+      parameters:
+        - name: service.type
+          value: LoadBalancer
   syncPolicy:
     syncOptions:
     - CreateNamespace=true
