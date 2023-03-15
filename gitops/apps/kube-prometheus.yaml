@@ -14,8 +14,3 @@ spec:
     path: manifests
     repoURL: https://github.com/prometheus-operator/kube-prometheus
     targetRevision: HEAD
-
-
-# apiextensions.k8s.io/CustomResourceDefinition/bgppeers.metallb.io
-# spec.conversion.webhook.clientConfig.caBundle
-# apiextensions.k8s.io/CustomResourceDefinition/addresspools.metallb.io
