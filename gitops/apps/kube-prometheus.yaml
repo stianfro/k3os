@@ -9,7 +9,7 @@ spec:
   project: default
   source:
     directory:
-      exclude: setup
+      exclude: {setup,grafana-networkPolicy.yaml,alertmanager-networkPolicy.yaml,prometheus-networkPolicy.yaml}
       jsonnet: {}
     path: manifests
     repoURL: https://github.com/prometheus-operator/kube-prometheus
