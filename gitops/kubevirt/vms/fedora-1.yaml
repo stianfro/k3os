@@ -3,9 +3,14 @@ kind: VirtualMachine
 metadata:
   name: fedora-1
   namespace: cdi
+  labels:
+    kubevirt.io/os: linux
 spec:
   running: true
   template:
+    metadata:
+      labels:
+        kubevirt.io/domain: fedora-1
     spec:
       domain:
         cpu:
