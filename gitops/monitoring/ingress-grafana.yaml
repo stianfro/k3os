@@ -3,8 +3,6 @@ kind: Ingress
 metadata:
   name: grafana
   namespace: monitoring
-  annotations:
-    kubernetes.io/ingress.class: "traefik"
   labels:
     name: grafana
 spec:

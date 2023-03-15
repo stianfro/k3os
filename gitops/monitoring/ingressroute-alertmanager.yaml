@@ -3,6 +3,8 @@ kind: IngressRoute
 metadata:
   name: alertmanager
   namespace: monitoring
+  annotations:
+    kubernetes.io/ingress.class: "traefik-external"
 spec:
   entryPoints:
     - web
