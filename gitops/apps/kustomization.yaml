@@ -4,3 +4,4 @@ resources:
   - monitoring.yaml
   - kube-prometheus.yaml
   - metallb.yaml
+  - cdi.yaml
