@@ -3,15 +3,13 @@ kind: Ingress
 metadata:
   name: grafana
   namespace: monitoring
-  labels:
-    name: grafana
 spec:
   rules:
   - host: grafana.froystein.jp
     http:
       paths:
       - pathType: Prefix
-        path: /
+        path: /test
         backend:
           service:
             name: grafana
