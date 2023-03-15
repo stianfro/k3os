@@ -4,7 +4,7 @@ metadata:
   name: fedora-1
   namespace: cdi
 spec:
-  running: false
+  running: true
   template:
     spec:
       domain:

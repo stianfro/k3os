@@ -9,7 +9,7 @@ metadata:
     cdi.kubevirt.io/storage.import.endpoint: "https://download.rockylinux.org/pub/rocky/9/images/x86_64/Rocky-9-Container-Base-9.1-20230215.0.x86_64.tar.xz"
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 5Gi
