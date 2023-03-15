@@ -1,2 +1,3 @@
 resources:
-  - testvm.yaml
+  - vms/testvm.yaml
+  - images/fedora.yaml
