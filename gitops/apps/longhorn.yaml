@@ -23,7 +23,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    chart: longhorn/longhorn
+    chart: longhorn
     repoURL: https://charts.longhorn.io
     targetRevision: 1.4.1
   syncPolicy:
