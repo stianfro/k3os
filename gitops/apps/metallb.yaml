@@ -11,3 +11,8 @@ spec:
     path: gitops/metallb
     repoURL: https://github.com/stianfro/k3os.git
     targetRevision: HEAD
+  ignoreDifferences:
+  - group: apiextensions
+    kind: CustomResourceDefinition
+    jqPathExpressions:
+    - '.spec.conversion.webhook.clientConfig.caBundle'
