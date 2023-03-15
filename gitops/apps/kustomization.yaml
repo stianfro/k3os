@@ -1,3 +1,5 @@
 resources:
   - argocd.yaml
   - kubevirt.yaml
+  - monitoring.yaml
+  - kube-prometheus.yaml
