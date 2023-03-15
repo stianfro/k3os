@@ -1,4 +1,4 @@
 resources:
   - ingressroute-alertmanager.yaml
-  - ingressroute-grafana.yaml
+  - ingress-grafana.yaml
   - ingressroute-prometheus.yaml
