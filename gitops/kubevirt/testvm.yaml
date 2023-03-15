@@ -2,6 +2,7 @@ apiVersion: kubevirt.io/v1
 kind: VirtualMachine
 metadata:
   name: testvm
+  namespace: vm
 spec:
   running: false
   template:
