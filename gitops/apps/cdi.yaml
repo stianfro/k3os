@@ -11,3 +11,6 @@ spec:
     path: gitops/cdi
     repoURL: https://github.com/stianfro/k3os.git
     targetRevision: HEAD
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
