@@ -1,6 +1,5 @@
 resources:
   - vms/testvm.yaml
   - vms/fedora-1.yaml
-  - vms/fedora-2.yaml
   - images/fedora.yaml
   - images/rocky.yaml
