@@ -1,0 +1,172 @@
+# export CAPK_GUEST_K8S_VERSION="v1.26.0"
+# export CRI_PATH="/var/run/containerd/containerd.sock"
+# export NODE_VM_IMAGE_TEMPLATE="quay.io/capk/ubuntu-2004-container-disk:${CAPK_GUEST_K8S_VERSION}"
+# clusterctl generate cluster capi-quickstart \
+#   --infrastructure="kubevirt" \
+#   --flavor lb \
+#   --kubernetes-version $CAPK_GUEST_K8S_VERSION \
+#   --control-plane-machine-count=1 \
+#   --worker-machine-count=1 \
+#   > gitops/clusterapi/clusters/capi-quickstart.yaml
+apiVersion: cluster.x-k8s.io/v1beta1
+kind: Cluster
+metadata:
+  name: capi-quickstart
+  namespace: home
+spec:
+  clusterNetwork:
+    pods:
+      cidrBlocks:
+      - 10.243.0.0/16
+    services:
+      cidrBlocks:
+      - 10.95.0.0/16
+  controlPlaneRef:
+    apiVersion: controlplane.cluster.x-k8s.io/v1beta1
+    kind: KubeadmControlPlane
+    name: capi-quickstart-control-plane
+    namespace: home
+  infrastructureRef:
+    apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
+    kind: KubevirtCluster
+    name: capi-quickstart
+    namespace: home
+---
+apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
+kind: KubevirtCluster
+metadata:
+  name: capi-quickstart
+  namespace: home
+spec:
+  controlPlaneServiceTemplate:
+    spec:
+      type: LoadBalancer
+---
+apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
+kind: KubevirtMachineTemplate
+metadata:
+  name: capi-quickstart-control-plane
+  namespace: home
+spec:
+  template:
+    spec:
+      virtualMachineTemplate:
+        metadata:
+          namespace: home
+        spec:
+          runStrategy: Always
+          template:
+            spec:
+              domain:
+                cpu:
+                  cores: 2
+                devices:
+                  disks:
+                  - disk:
+                      bus: virtio
+                    name: containervolume
+                  networkInterfaceMultiqueue: true
+                memory:
+                  guest: 4Gi
+              evictionStrategy: External
+              volumes:
+              - containerDisk:
+                  image: quay.io/capk/ubuntu-2004-container-disk:v1.23.10
+                name: containervolume
+---
+apiVersion: controlplane.cluster.x-k8s.io/v1beta1
+kind: KubeadmControlPlane
+metadata:
+  name: capi-quickstart-control-plane
+  namespace: home
+spec:
+  kubeadmConfigSpec:
+    clusterConfiguration:
+      networking:
+        dnsDomain: capi-quickstart.home.local
+        podSubnet: 10.243.0.0/16
+        serviceSubnet: 10.95.0.0/16
+    initConfiguration:
+      nodeRegistration:
+        criSocket: /var/run/containerd/containerd.sock
+    joinConfiguration:
+      nodeRegistration:
+        criSocket: /var/run/containerd/containerd.sock
+  machineTemplate:
+    infrastructureRef:
+      apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
+      kind: KubevirtMachineTemplate
+      name: capi-quickstart-control-plane
+      namespace: home
+  replicas: 1
+  version: v1.26.0
+---
+apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
+kind: KubevirtMachineTemplate
+metadata:
+  name: capi-quickstart-md-0
+  namespace: home
+spec:
+  template:
+    spec:
+      virtualMachineTemplate:
+        metadata:
+          namespace: home
+        spec:
+          runStrategy: Always
+          template:
+            spec:
+              domain:
+                cpu:
+                  cores: 2
+                devices:
+                  disks:
+                  - disk:
+                      bus: virtio
+                    name: containervolume
+                  networkInterfaceMultiqueue: true
+                memory:
+                  guest: 4Gi
+              evictionStrategy: External
+              volumes:
+              - containerDisk:
+                  image: quay.io/capk/ubuntu-2004-container-disk:v1.23.10
+                name: containervolume
+---
+apiVersion: bootstrap.cluster.x-k8s.io/v1beta1
+kind: KubeadmConfigTemplate
+metadata:
+  name: capi-quickstart-md-0
+  namespace: home
+spec:
+  template:
+    spec:
+      joinConfiguration:
+        nodeRegistration:
+          kubeletExtraArgs: {}
+---
+apiVersion: cluster.x-k8s.io/v1beta1
+kind: MachineDeployment
+metadata:
+  name: capi-quickstart-md-0
+  namespace: home
+spec:
+  clusterName: capi-quickstart
+  replicas: 1
+  selector:
+    matchLabels: null
+  template:
+    spec:
+      bootstrap:
+        configRef:
+          apiVersion: bootstrap.cluster.x-k8s.io/v1beta1
+          kind: KubeadmConfigTemplate
+          name: capi-quickstart-md-0
+          namespace: home
+      clusterName: capi-quickstart
+      infrastructureRef:
+        apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
+        kind: KubevirtMachineTemplate
+        name: capi-quickstart-md-0
+        namespace: home
+      version: v1.26.0

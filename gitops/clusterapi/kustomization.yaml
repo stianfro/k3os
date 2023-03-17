@@ -1,0 +1,2 @@
+resources:
+  - clusters/capi-quickstart.yaml
