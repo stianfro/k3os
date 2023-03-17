@@ -6,3 +6,4 @@ resources:
   - metallb.yaml
   - cdi.yaml
   - longhorn.yaml
+  - clusterapi.yaml
