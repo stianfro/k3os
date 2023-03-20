@@ -1,2 +1,2 @@
 resources:
-  - clusters/capi-quickstart.yaml
+  - clusters/capi-quickstart/capi-quickstart.yaml
