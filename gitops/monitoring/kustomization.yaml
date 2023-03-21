@@ -1,3 +1,4 @@
 resources:
   - ingress.yaml
   - networkpolicy.yaml
+  - etcd-servicemonitor.yaml
