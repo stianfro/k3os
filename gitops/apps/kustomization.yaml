@@ -7,3 +7,4 @@ resources:
   - cdi.yaml
   - longhorn.yaml
   - clusterapi.yaml
+  - influx.yaml
