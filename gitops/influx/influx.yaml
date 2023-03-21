@@ -49,9 +49,6 @@ spec:
         - name: influxdb-data
           persistentVolumeClaim:
             claimName: influxdb-data-pvc
-        - name: tls-certs
-          secret:
-            secretName: tls-certs-secret
 ---
 apiVersion: v1
 kind: Service
