@@ -30,8 +30,6 @@ spec:
           volumeMounts:
             - name: influxdb-data
               mountPath: /var/lib/influxdb
-            - name: tls-certs
-              mountPath: /var/lib/influxdb-tls-certs
           env:
             - name: INFLUXDB_DB
               value: metrics
