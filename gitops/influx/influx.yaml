@@ -5,8 +5,8 @@ metadata:
   namespace: influx
 type: Opaque
 data:
-  username: bce0d760-6425-4a39-8503-157615d278ae
-  password: fa6454ec-4b57-49ce-b1eb-eb835a8d5e8f
+  username: YmNlMGQ3NjAtNjQyNS00YTM5LTg1MDMtMTU3NjE1ZDI3OGFl
+  password: ZmE2NDU0ZWMtNGI1Ny00OWNlLWIxZWItZWI4MzVhOGQ1ZThm
 ---
 apiVersion: apps/v1
 kind: Deployment
